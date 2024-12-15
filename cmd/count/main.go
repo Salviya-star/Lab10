@@ -1,10 +1,10 @@
 package main
 
 import (
-	"Lab10/internal/hello/api"
-	"Lab10/internal/hello/config"
-	"Lab10/internal/hello/provider"
-	"Lab10/internal/hello/usecase"
+	"Lab10/internal/count/api"
+	"Lab10/internal/count/config"
+	"Lab10/internal/count/provider"
+	"Lab10/internal/count/usecase"
 	"flag"
 	"log"
 
@@ -22,7 +22,7 @@ func main() {
 	}
 
 	prv := provider.NewProvider(cfg.DB.Host, cfg.DB.Port, cfg.DB.User, cfg.DB.Password, cfg.DB.DBname)
-	use := usecase.NewUsecase(cfg.Usecase.DefaultMessage, prv)
+	use := usecase.NewUsecase(cfg.Usecase.DefaultMessageCount, prv)
 	srv := api.NewServer(cfg.IP, cfg.Port, cfg.API.MaxMessageSize, use)
 
 	srv.Run()
